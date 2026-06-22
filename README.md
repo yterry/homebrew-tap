@@ -8,13 +8,16 @@ headphone monitoring, routed into OBS / Zoom / Discord.
 
 ```sh
 brew tap yterry/tap
+brew trust yterry/tap          # one-time: Homebrew 6 gates third-party taps
 brew install --cask razer-seiren
 ```
 
 Upgrade later with `brew upgrade --cask razer-seiren`.
 
-> If Homebrew refuses the cask as an "untrusted tap" (newer Homebrew can gate
-> third-party taps), run `brew trust yterry/tap` once and retry.
+> The `brew trust` line is a one-time approval for a third-party tap — Homebrew 6+
+> requires it for any tap outside the official repos (older Homebrew ignores it
+> harmlessly). Skip it and you'll see *"Refusing to load cask … from untrusted
+> tap"*.
 
 The app is **unsigned** (no paid Apple Developer ID yet), so the cask clears the
 Gatekeeper quarantine flag for you — it launches with **no manual bypass**. That
