@@ -3,20 +3,18 @@
 #   brew tap yterry/tap
 #   brew install --cask razer-seiren
 #
-# The app is unsigned (no paid Apple Developer ID yet); a personal tap has no
-# notarization requirement, and the postflight xattr below clears the Gatekeeper
-# quarantine flag so the build runs with no manual bypass. REMOVE the postflight
-# block once the app is notarized.
+# Releases from v1.1.0 on are signed with a Developer ID and notarized, so
+# Gatekeeper opens them with no bypass and no cask workarounds.
 #
 # On each upstream release, run `scripts/bump-cask.sh <version>` (it fetches the
 # published .sha256 and rewrites `version` + `sha256`), then commit and push.
 cask "razer-seiren" do
-  version "1.0.0"
-  sha256 "ee00f1c35ce502971f51697b93744d64cd31ebcd95c26bd16359b82ad012efa0"
+  version "1.1.0"
+  sha256 "a562d68c9c5d9445ddf3d3e994ca0f007caaa41992fe031fbc2aef6b9da2dfe5"
 
   url "https://github.com/yterry/razer-seiren-macos/releases/download/v#{version}/Seiren-#{version}.zip"
   name "Seiren"
-  desc "Voice toolkit for Razer Seiren mics — EQ, noise suppression, and monitoring"
+  desc "Voice and lighting toolkit for Razer Seiren mics - EQ, noise suppression, monitoring, Chroma"
   homepage "https://github.com/yterry/razer-seiren-macos"
 
   livecheck do
@@ -28,13 +26,6 @@ cask "razer-seiren" do
   depends_on macos: :ventura # minimum; matches LSMinimumSystemVersion 13.0
 
   app "Seiren.app"
-
-  # Unsigned build: clear the quarantine xattr so Gatekeeper lets it run.
-  # REMOVE this block once the app is notarized.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Seiren.app"]
-  end
 
   uninstall quit: "com.yterry.seiren-mac"
 
