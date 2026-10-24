@@ -9,8 +9,8 @@
 # On each upstream release, run `scripts/bump-cask.sh <version>` (it fetches the
 # published .sha256 and rewrites `version` + `sha256`), then commit and push.
 cask "razer-seiren" do
-  version "1.4.0"
-  sha256 "a386716ee4a85228aeba639753298e1293f8caba0cc42bc9908e2e6b9de8f84a"
+  version "1.5.0"
+  sha256 "db06570b12c10ae922415eb2818c34734cae848006024cfd71fac2bb44979133"
 
   url "https://github.com/yterry/razer-seiren-macos/releases/download/v#{version}/Seiren-#{version}.zip"
   name "Seiren"
